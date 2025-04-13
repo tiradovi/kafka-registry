@@ -41,13 +41,36 @@ com/
 ```json
 {
   "type": "record",
-  "name": "OrderEvent",
+  "name": "TestEvent",
   "namespace": "com.example.kafka_schemas",
   "fields": [
-    { "name": "orderId", "type": "int" },
-    { "name": "status", "type": "string" },
-    { "name": "qty", "type": "int" }
+    { "name": "id", "type": "int" },
+    { "name": "message", "type": "string" },
+    {
+      "name": "user",
+      "type": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          { "name": "userId", "type": "int" },
+          { "name": "username", "type": "string" }
+        ]
+      }
+    },
+    {
+      "name": "tags",
+      "type": { "type": "array", "items": "string" }
+    }
   ]
+}
+```
+- 해당 스키마는 다음과 같은 자바 객체로 변환됩니다. 
+```java
+public class TestEvent extends SpecificRecordBase {
+    private int id;
+    private String message;
+    private User user;
+    private List<String> tags;
 }
 ```
 

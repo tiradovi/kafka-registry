@@ -5,6 +5,20 @@
   "fields": [
     { "name": "id", "type": "int" },
     { "name": "message", "type": "string" },
-    { "name": "timestamp", "type": "long" }
+    {
+      "name": "user",
+      "type": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          { "name": "userId", "type": "int" },
+          { "name": "username", "type": "string" }
+        ]
+      }
+    },
+    {
+      "name": "tags",
+      "type": { "type": "array", "items": "string" }
+    }
   ]
 }
