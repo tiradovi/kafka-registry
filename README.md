@@ -24,7 +24,7 @@ com/
 
 1. 이 레포를 서브모듈로 추가하거나, `.avsc` 파일을 직접 복사합니다.
    ```bash
-   git submodule add https://github.com/your-org/kafka-registry src/main/avro-schemas
+   git submodule add https://github.com/Team-Project-MSA-InnerArchitecture/kafka-registry.git src/main/avro-schemas
    ```
 
 2. Spring 또는 Kafka Producer/Consumer 설정에서 Avro 스키마 경로로 지정합니다.
@@ -55,7 +55,8 @@ com/
 
 - 새로운 스키마 추가 및 변경은 반드시 PR로 진행합니다.
 - PR 시 `namespace`, `name`, `field` 변경 사항을 명확히 기술해주세요.
-- 스키마 변경 시 호환성(backward compatibility)을 고려해야 합니다.
+- 스키마 변경 시 각 MS팀 간의 호환성(backward compatibility)을 고려해야 합니다.
+  -> 이너 아키텍처 팀에서 각 팀의 호환성 체크 후 머지하겠습니다.
 
 ## 🔗 참고
 
