@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "name": "TestEvent",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    { "name": "id", "type": "int" },
+    { "name": "message", "type": "string" },
+    { "name": "timestamp", "type": "long" }
+  ]
+}
