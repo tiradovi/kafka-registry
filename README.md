@@ -11,9 +11,11 @@ Schema Registry를 기반으로 데이터 계약(Contract)을 정리하고 버�
 com/
   example/
     kafka_schemas/
-      OrderEvent.avsc
-      StockUpdateEvent.avsc
-      LoadTestEvent.avsc
+      /order
+        OrderEvent.avsc
+        StockUpdateEvent.avsc
+      /test
+        LoadTestEvent.avsc
 ```
 
 - 각 `.avsc` 파일은 Avro 스키마 정의이며, `namespace`에 따라 디렉토리 구조를 맞춥니다.
