@@ -8,9 +8,9 @@ Schema Registry를 기반으로 데이터 계약(Contract)을 정리하고 버�
 ## 🗂️ 디렉토리 구조
 
 ```
-com/
-  example/
-    kafka_schemas/
+src/
+  main/
+    avro/
       /order
         OrderEvent.avsc
         StockUpdateEvent.avsc
@@ -18,7 +18,8 @@ com/
         LoadTestEvent.avsc
 ```
 
-- 각 `.avsc` 파일은 Avro 스키마 정의이며, `namespace`에 따라 디렉토리 구조를 맞춥니다.
+- 각 `.avsc` 파일은 Avro 스키마 정의이며, `namespace`로 빌드 시 객체를 저장할 경로를 지정합니다.
+- `src/main/avro`는 빌드 도구가 avro를 찾는 기본 경로이며, 변경할 시 따로 명시해줘야 합니다.
 
 ## 🛠️ 사용 방법
 
@@ -27,14 +28,48 @@ com/
    git submodule add https://github.com/Team-Project-MSA-InnerArchitecture/kafka-registry.git src/main/avro-schemas
    ```
 
-2. Spring 또는 Kafka Producer/Consumer 설정에서 Avro 스키마 경로로 지정합니다.
+2. 빌드 도구에 설정을 추가합니다. (gradle 예시)
    ```groovy
+   plugins {
+     id 'com.github.davidmc24.gradle.plugin.avro' version '1.5.0'
+   }
+    
+   repositories {
+     mavenCentral()
+     maven { url 'https://packages.confluent.io/maven/' }
+   }
+    
+   dependencies {
+     //kafka
+     implementation 'org.springframework.kafka:spring-kafka'
+     implementation 'com.fasterxml.jackson.core:jackson-databind'
+   
+     //avro
+     implementation 'org.apache.avro:avro:1.11.4'
+     implementation 'io.confluent:kafka-avro-serializer:7.6.0'
+   }
+    
    avro {
-       fieldVisibility = "PRIVATE"
+     fieldVisibility = "PRIVATE"
    }
    ```
 
-3. 각 서비스는 `build.gradle`이나 CI/CD에서 `.avsc` 파일을 자동 컴파일하여 사용합니다.
+3. 카프카 서버를 설정 파일에 등록합니다. (yml 예시)
+```YAML
+spring:
+  kafka:
+    bootstrap-servers: 43.200.90.54:9092
+    consumer:
+      group-id: your-service-name
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    properties:
+      schema.registry.url: http://43.200.90.54:8081
+      specific.avro.reader: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+```
 
 ## 📦 스키마 예시
 
