@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "MealEvent",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    {
+      "name": "mealType",
+      "type": "string"
+    },
+    {
+      "name": "mealContents",
+      "type": "string"
+    },
+    {
+      "name": "date",
+      "type": "string"
+    }
+  ]
+}
