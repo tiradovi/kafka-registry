@@ -23,9 +23,9 @@ src/
 
 ## 🛠️ 사용 방법
 
-### 1. 이 레포를 서브모듈로 추가하거나, `.avsc` 파일을 직접 복사합니다.
+### 1. 이 레포를 포크해서 서브모듈로 추가합니다.
    ```bash
-   git submodule add https://github.com/Team-Project-MSA-InnerArchitecture/kafka-registry.git src/main/avro
+   git submodule add https://github.com/Team-Project-MSA-InnerArchitecture/avro.git(포크받은 주소) src/main/avro-schemas
    ```
 
 ### 2. 빌드 도구에 설정을 추가합니다. (gradle 예시)
