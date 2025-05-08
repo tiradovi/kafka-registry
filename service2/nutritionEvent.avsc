@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "NutritionEvent",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    {
+      "name": "foodName",
+      "type": "string"
+    },
+    {
+      "name": "foodWeight",
+      "type": "double"
+    },
+    {
+      "name": "kcal",
+      "type": "double"
+    },
+    {
+      "name": "protein",
+      "type": "double"
+    },
+    {
+      "name": "fat",
+      "type": "double"
+    },
+    {
+      "name": "carb",
+      "type": "double"
+    }
+  ]
+}
