@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "EventMenu",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    {
+      "name": "eventTitle",
+      "type": "string"
+    },
+    {
+      "name": "date",
+      "type": "string"
+    }
+  ]
+}
