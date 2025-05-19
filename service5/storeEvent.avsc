@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "StoreEvent",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    {
+      "name": "mealType",
+      "type": "string"
+    },
+    {
+      "name": "storeName",
+      "type": "string"
+    },
+    {
+      "name": "imageUrl",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "url",
+      "type": "string"
+    }
+  ]
+}

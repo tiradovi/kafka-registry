@@ -1,0 +1,46 @@
+{
+  "type": "record",
+  "name": "ReviewEvent",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    {
+      "name": "mealdayInfo",
+      "type": "string"
+    },
+    {
+      "name": "mealType",
+      "type": "string"
+    },
+    {
+      "name": "overallOpinion",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "freeOpinion",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "menuRatings",
+      "type": {
+        "type": "map",
+        "values": "int"
+      }
+    },
+    {
+      "name": "menuQuestions",
+      "type": {
+        "type": "map",
+        "values": "string"
+      }
+    },
+    {
+      "name": "menuAnswers",
+      "type": {
+        "type": "map",
+        "values": "string"
+      }
+    }
+  ]
+}
