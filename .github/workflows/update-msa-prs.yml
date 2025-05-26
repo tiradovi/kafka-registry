@@ -1,0 +1,56 @@
+name: Send PR to MSA services on avro update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-prs:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    steps:
+      - name: Checkout avro repo
+        uses: actions/checkout@v3
+
+      - name: Install GitHub CLI
+        uses: cli/cli-action@v2
+
+      - name: Read and iterate over services
+        run: |
+          # 서비스 목록을 읽어온다
+          jq -r '.[]' services.json | while read repo; do
+            echo "Processing $repo"
+            repo_dir=$(basename $repo)
+            branch_name="update-avro-$(date +%s)"
+
+            # Clone 대상 서비스 레포
+            git clone https://x-access-token:${GH_TOKEN}@github.com/$repo.git
+            cd $repo_dir
+
+            git config user.name "avro-bot"
+            git config user.email "avro-bot@example.com"
+
+            # main 브랜치 기준 새 브랜치 생성
+            git checkout -b $branch_name origin/main
+
+            # 서브모듈 초기화 및 업데이트
+            git submodule update --init
+            git -C src/main/avro fetch
+            git -C src/main/avro checkout main
+
+            git add src/main/avro
+            git commit -m "chore: update avro submodule to latest" || echo "No changes"
+            git push origin $branch_name
+
+            # PR 생성
+            gh pr create \
+              --title "chore: update avro submodule" \
+              --body "자동화된 PR입니다. avro 최신 커밋으로 반영." \
+              --head $branch_name \
+              --base main || echo "PR already exists"
+
+            cd ..
+          done
