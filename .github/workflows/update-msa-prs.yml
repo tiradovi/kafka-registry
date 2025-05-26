@@ -26,10 +26,21 @@ jobs:
           sudo apt update
           sudo apt install gh -y
 
+      - name: Debug working directory and check services.json
+        run: |
+          echo "== Current Directory =="
+          pwd
+          echo "== File List =="
+          ls -al
+          echo "== Root File List =="
+          ls -al $GITHUB_WORKSPACE
+          echo "== services.json =="
+          cat $GITHUB_WORKSPACE/services.json || echo "services.json not found"
+
       - name: Read and iterate over services
         run: |
-          # 서비스 목록을 읽어온다
-          jq -r '.[]' ./services.json | while read repo; do
+          # 서비스 목록을 읽어오기
+          jq -r '.[]' $GITHUB_WORKSPACE/services.json | while read repo; do
             echo "Processing $repo"
             repo_dir=$(basename $repo)
             branch_name="update-avro-$(date +%s)"
