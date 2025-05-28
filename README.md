@@ -25,7 +25,7 @@ src/
 
 ### 1. 이 레포를 포크해서 서브모듈로 추가합니다.
    ```bash
-   git submodule add https://github.com/Team-Project-MSA-InnerArchitecture/avro.git(포크받은 주소) src/main/avro-schemas
+   git submodule add https://github.com/Team-Project-MSA-InnerArchitecture/avro.git(포크받은 주소) src/main/avro
    ```
 
 ### 2. 빌드 도구에 설정을 추가합니다. (gradle 예시)
