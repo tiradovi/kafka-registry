@@ -131,4 +131,4 @@ public class TestEvent extends SpecificRecordBase {
 ## 🔗 참고
 
 - [Confluent Schema Registry Docs](https://docs.confluent.io/platform/current/schema-registry/index.html)
-- [Avro Specification](https://avro.apache.org/docs/current/spec.html)
+- [Avro Specification](https://avro.apache.org/docs/1.11.1/getting-started-java/)
