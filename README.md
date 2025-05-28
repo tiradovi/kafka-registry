@@ -59,7 +59,7 @@ src/
 
 - Spring Boot DevTools는 개발 편의성용 자동 리스타트 도구입니다.
 - 하지만 Kafka 및 Avro 환경에서는 클래스 로딩 방식 때문에 ClassCastException이 발생합니다.
-- `build.gradle`에서 반드시 주석 처리 또는 제거해주세요!!!!
+- `build.gradle`에서 반드시 주석 처리 또는 제거해주세요!!!
 
 ```groovy
 // ✅ 반드시 주석 처리하거나 삭제할 것!
