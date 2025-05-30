@@ -1,0 +1,11 @@
+{
+  "namespace": "com.example.kafka_schemas",
+  "type": "record",
+  "name": "UserEvent",
+  "fields": [
+    { "name": "id",        "type": "long" },
+    { "name": "username",  "type": "string" },
+    { "name": "email",     "type": "string" },
+    { "name": "nickname",  "type": "string" }
+  ]
+}
