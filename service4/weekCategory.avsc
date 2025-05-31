@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "WeekCategoryEvent",
+  "namespace": "com.example.kafka_schemas",
+  "fields": [
+    {
+      "name": "mealType",
+      "type": "string"
+    },
+    {
+      "name": "mealName",
+      "type": "string"
+    },
+    {
+      "name": "mealCategory",
+      "type": "string"
+    },
+    {
+      "name": "date",
+      "type": "string"
+    }
+  ]
+}
